@@ -1,0 +1,39 @@
+input {
+  caret-color: transparent;
+}
+
+.crosswordGrid {
+  width: 400px;
+  height: 417px;
+  display: grid;
+  grid-template-rows: 100px;
+  grid-auto-columns: 100px;
+  border: solid;
+  grid-gap: 0;
+}
+
+* {
+  height: 100px;
+  font-size: 2rem;
+  text-align: center;
+  /*   text-transform: uppercase; */
+}
+
+#across1L1Input,
+#across2L1Input,
+#across3L1Input,
+#across4L1Input {
+  grid-column: 1;
+}
+
+#across1L2Input {
+  grid-column: 2;
+}
+
+#across1L3Input {
+  grid-column: 3;
+}
+
+#across1L4Input {
+  grid-column: 4;
+}
