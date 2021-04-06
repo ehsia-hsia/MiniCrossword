@@ -45,3 +45,15 @@ input {
   color: blue;
   background-color: lightblue;
 }
+
+.blankLetter {
+  background-color: black;
+}
+
+.selected {
+  background-color: palegoldenrod;
+}
+
+.letterSelected {
+  background-color: rgb(238, 170, 229);
+}

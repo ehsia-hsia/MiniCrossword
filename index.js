@@ -1,5 +1,6 @@
 "use strict";
 
+//Variable and Object Creation
 const word1 = new CrossWordKey(
   "_poem",
   "across1L1Input",
@@ -44,35 +45,74 @@ const word5 = new CrossWordKey(
   "across5L4Input",
   "across5L5Input"
 );
-function CrossWordKey(word, id1, id2, id3, id4, id5) {
-  this.word = word;
 
+//Construction Function
+
+function CrossWordKey(keyWord, id1, id2, id3, id4, id5) {
+  this.keyWord = keyWord; //correct word
   this.id1 = document.getElementById(id1);
   this.id2 = document.getElementById(id2);
   this.id3 = document.getElementById(id3);
   this.id4 = document.getElementById(id4);
   this.id5 = document.getElementById(id5);
 
+  // Input Array & Call Functions
   const inputArray = [this.id1, this.id2, this.id3, this.id4, this.id5];
+  inputArray.forEach((input) => input.addEventListener("keyup", runPlay));
+  inputArray.forEach((input) => input.addEventListener("click", runPlay2));
 
-  for (let i = 0; i < inputArray.length; i++) {
-    inputArray[i].addEventListener("keyup", runPlay);
-    if (word[i] == "_") {
-      inputArray[i].style.backgroundColor = "black";
-      inputArray[i].disabled = "true";
+  function runPlay() {
+    for (let i = 0; i < inputArray.length; i++) {
+      check(keyWord[i], inputArray[i]);
+      highLightFunctions(inputArray[i]);
+    }
+  }
+  function runPlay2() {
+    for (let i = 0; i < inputArray.length; i++) {
+      highLightFunctions(inputArray[i]);
     }
   }
 
-  this.check = function () {
-    for (let i = 0; i < inputArray.length; i++) {
-      if (inputArray[i].value == this.word[i]) {
-        inputArray[i].style.backgroundColor = "blue";
-      } //end conditional
-    } // end loop
-  }; //end check fucntion
+  //Blank Letters
+  for (let i = 0; i < inputArray.length; i++) {
+    blankLetter(keyWord[i], inputArray[i]);
+  }
 } //end object
 
-function runPlay() {
-  const wordArray = [word1, word2, word3, word4, word5];
-  wordArray.forEach((word) => word.check());
+//Blank Styles
+function highLightFunctions(id) {
+  if (id.focus) {
+    if (id.disabled == false) {
+      id.classList.toggle("selected");
+    }
+  }
 }
+function blankLetter(wordSquare, inputId) {
+  if (wordSquare == "_") {
+    inputId.classList.add("blankLetter");
+    inputId.disabled = "true";
+  }
+}
+
+//Work Checker
+function check(letter, id) {
+  if (id.value == letter) {
+    id.classList.add("correctColor");
+  }
+}
+
+//------------------------------//
+//object function previous
+
+//Correct Letter
+// this.check = function () {
+//   for (let i = 0; i < inputArray.length; i++) {
+//     if (inputArray[i].value == this.keyWord[i]) {
+//       inputArray[i].classList.add("correctColor");
+//     }
+//   }
+// };
+// function runPlay() {
+//   const wordArray = [word1, word2, word3, word4, word5];
+//   wordArray.forEach((word) => word.check());
+// }
