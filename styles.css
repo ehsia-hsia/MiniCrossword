@@ -12,7 +12,7 @@ input {
 /*Grid Structure */
 .crosswordGrid {
   width: 500px;
-  height: 417px;
+  height: 524px;
   display: grid;
   grid-template-rows: 100px;
   grid-auto-columns: 100px;
