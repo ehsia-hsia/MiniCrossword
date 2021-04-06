@@ -1,9 +1,17 @@
+* {
+  height: 100px;
+  font-size: 2rem;
+  text-align: center;
+  text-transform: uppercase;
+}
+
 input {
   caret-color: transparent;
 }
 
+/*Grid Structure */
 .crosswordGrid {
-  width: 400px;
+  width: 500px;
   height: 417px;
   display: grid;
   grid-template-rows: 100px;
@@ -12,17 +20,7 @@ input {
   grid-gap: 0;
 }
 
-* {
-  height: 100px;
-  font-size: 2rem;
-  text-align: center;
-  /*   text-transform: uppercase; */
-}
-
-#across1L1Input,
-#across2L1Input,
-#across3L1Input,
-#across4L1Input {
+#across1L1Input {
   grid-column: 1;
 }
 
@@ -36,4 +34,14 @@ input {
 
 #across1L4Input {
   grid-column: 4;
+}
+
+#across1L5Input {
+  grid-column: 5;
+}
+
+/* Play Styles */
+.correctColor {
+  color: blue;
+  background-color: lightblue;
 }
