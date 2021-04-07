@@ -1,0 +1,44 @@
+//------------------------------//
+//object function previous
+
+//Correct Letter
+// this.check = function () {
+//   for (let i = 0; i < inputArray.length; i++) {
+//     if (inputArray[i].value == this.keyWord[i]) {
+//       inputArray[i].classList.add("correctColor");
+//     }
+//   }
+// };
+// function runPlay() {
+//   const wordArray = [word1, word2, word3, word4, word5];
+//   wordArray.forEach((word) => word.check());
+// }
+// function highLightFunctions(id) {
+//   if (id.focus) {
+//     if (id.disabled == false) {
+//       id.classList.add("selected");
+//     }
+//   }
+// }
+
+// const inputArray = [];
+// const keyWords = [];
+// const wordArray = [word1, word2, word3, word4, word5];
+
+// inputArray.forEach((input) => input.addEventListener("keyup", runPlay));
+// inputArray.forEach((input) => input.addEventListener("click", runPlay2));
+
+// function test() {
+//   wordArray.forEach((word) =>
+//     inputArray.push(word.id1, word.id2, word.id3, word.id4, word.id5)
+//   );
+//   wordArray.forEach((word) => keyWords.push(word.keyWord));
+// }
+// // test();
+// inputArray.forEach((input) => input.addEventListener("click", runPlay2));
+
+// function runPlay2() {
+//   for (let i = 0; i < inputArray.length; i++) {
+//     highLightFunctions(inputArray[i]);
+//   }
+// }

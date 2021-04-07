@@ -58,61 +58,77 @@ function CrossWordKey(keyWord, id1, id2, id3, id4, id5) {
 
   // Input Array & Call Functions
   const inputArray = [this.id1, this.id2, this.id3, this.id4, this.id5];
-  inputArray.forEach((input) => input.addEventListener("keyup", runPlay));
-  inputArray.forEach((input) => input.addEventListener("click", runPlay2));
+  inputArray.forEach((input) => input.addEventListener("keyup", runPlayKeyUp));
 
-  function runPlay() {
-    for (let i = 0; i < inputArray.length; i++) {
-      check(keyWord[i], inputArray[i]);
-      highLightFunctions(inputArray[i]);
-    }
-  }
-  function runPlay2() {
-    for (let i = 0; i < inputArray.length; i++) {
-      highLightFunctions(inputArray[i]);
-    }
-  }
+  inputArray.forEach((input) => input.addEventListener("focus", runPlayFocus));
 
-  //Blank Letters
   for (let i = 0; i < inputArray.length; i++) {
     blankLetter(keyWord[i], inputArray[i]);
+
+    inputArray[i].autocomplete = "off";
+  }
+  function runPlayKeyUp() {
+    for (let i = 0; i < inputArray.length; i++) {
+      check(keyWord[i], inputArray[i]);
+      cursorMove(inputArray[i]);
+      highLightFunctions(inputArray[i]);
+    }
+  }
+  function runPlayFocus() {
+    for (let i = 0; i < inputArray.length; i++) {
+      highLightFunctions(inputArray[i]);
+    }
   }
 } //end object
 
-//Blank Styles
-function highLightFunctions(id) {
-  if (id.focus) {
-    if (id.disabled == false) {
-      id.classList.toggle("selected");
-    }
-  }
-}
+//--Blank Styles
+
 function blankLetter(wordSquare, inputId) {
   if (wordSquare == "_") {
     inputId.classList.add("blankLetter");
     inputId.disabled = "true";
+    inputId.readOnly = "true";
   }
 }
 
-//Work Checker
+//--Work Checker
 function check(letter, id) {
   if (id.value == letter) {
     id.classList.add("correctColor");
+    id.disabled = "true";
+    id.readOnly = "true";
   }
 }
 
-//------------------------------//
-//object function previous
+function highLightFunctions(id) {
+  if (id.focus) {
+    if (id.readOnly == false) {
+      id.classList.add("selected");
+    }
+  }
+}
 
-//Correct Letter
-// this.check = function () {
-//   for (let i = 0; i < inputArray.length; i++) {
-//     if (inputArray[i].value == this.keyWord[i]) {
-//       inputArray[i].classList.add("correctColor");
-//     }
-//   }
-// };
-// function runPlay() {
-//   const wordArray = [word1, word2, word3, word4, word5];
-//   wordArray.forEach((word) => word.check());
-// }
+function cursorMove(input) {
+  let nextTarg = input;
+  let myLength = nextTarg.value.length;
+  if (myLength >= 1) {
+    nextTarg.focus();
+    while ((nextTarg = nextTarg.nextElementSibling)) {
+      if (nextTarg == null) break;
+      if (nextTarg.tagName.toLowerCase() == "input") {
+        nextTarg.focus();
+        break;
+      }
+      if (nextTarg.nextElementSibling == null) {
+        nextTarg = nextTarg.firstChild;
+        nextTarg.focus();
+        break;
+      }
+      if (nextTarg.readOnly == true) {
+        nextTarg = nextTarg.nextSibling;
+        nextTarg.focus();
+        break;
+      }
+    }
+  }
+}

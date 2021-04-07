@@ -9,6 +9,9 @@ input {
   caret-color: transparent;
 }
 
+input:focus {
+  background-color: pink;
+}
 /*Grid Structure */
 .crosswordGrid {
   width: 500px;
