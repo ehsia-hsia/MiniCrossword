@@ -75,7 +75,6 @@ function CrossWordKey(keyWord, id1, id2, id3, id4, id5) {
   }
   function runPlayFocus() {
     for (let i = 0; i < inputArray.length; i++) {
-      highLightFunctions(inputArray[i]);
       test(inputArray[i]);
     }
   }
@@ -90,7 +89,6 @@ function blankLetter(wordSquare, inputId) {
     inputId.readOnly = "true";
   }
 }
-const wordArray = [word1, word2, word3, word4, word5];
 
 function test(section) {
   if (section.disabled == false) {
@@ -106,12 +104,8 @@ function check(letter, id) {
     id.disabled = "true";
     id.readOnly = "true";
     id.classList.add("correctColor");
-  } else if (!id == "_") {
-    id.classList.add("selected");
   }
 }
-
-function highLightFunctions(id) {}
 
 function cursorMove(input) {
   let nextTarg = input;

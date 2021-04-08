@@ -46,11 +46,15 @@ input:focus {
 /* Play Styles */
 .correctColor {
   color: blue;
-  background-color: lightblue;
+  background-color: lightblue !important;
+}
+.incorrectColor {
+  color: red !important;
+  background-color: white !important;
 }
 
 .blankLetter {
-  background-color: black;
+  background-color: black !important;
 }
 
 .selected {
