@@ -89,7 +89,7 @@ function testyLoop(word) {
   }
 }
 newArrayTest.forEach((input) => input.addEventListener("keyup", runPlayKeyUp));
-newArrayTest.forEach((input) => input.addEventListener("focus", runPlayKeyUp));
+newArrayTest.forEach((input) => input.addEventListener("focus", runPlayFocus));
 
 function runPlayKeyUp(word) {
   for (let i = 0; i < newArrayTest.length; i++) {
