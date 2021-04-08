@@ -1,7 +1,7 @@
 "use strict";
 
 //Variable and Object Creation
-const word1 = new CrossWordKey(
+const word0 = new CrossWordKey(
   "_poem",
   "across1L1Input",
   "across1L2Input",
@@ -69,7 +69,7 @@ function CrossWordKey(keyWord, id1, id2, id3, id4, id5) {
 
   function runPlayKeyUp() {
     for (let i = 0; i < inputArray.length; i++) {
-      check(keyWord[i], inputArray[i]);
+      check(keyWord[i], inputArray[i], inputArray[i][i]);
       cursorMove(inputArray[i]);
     }
   }
@@ -79,7 +79,11 @@ function CrossWordKey(keyWord, id1, id2, id3, id4, id5) {
     }
   }
 } //end object
-
+for (let i = 1; i < 6; i++) {
+  const idBaby = `id${i}`;
+  console.log(idBaby);
+  word0[idBaby].style.backgroundColor = "pink";
+}
 //--Blank Styles
 
 function blankLetter(wordSquare, inputId) {
@@ -99,11 +103,13 @@ function test(section) {
 }
 
 //--Work Checker
-function check(letter, id) {
+function check(letter, id, singleId) {
   if (id.value == letter) {
     id.disabled = "true";
     id.readOnly = "true";
     id.classList.add("correctColor");
+  } else if (id.value !== letter) {
+    singleId.classList.add("incorrectColor");
   }
 }
 
