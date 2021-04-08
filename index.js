@@ -64,19 +64,19 @@ function CrossWordKey(keyWord, id1, id2, id3, id4, id5) {
 
   for (let i = 0; i < inputArray.length; i++) {
     blankLetter(keyWord[i], inputArray[i]);
-
     inputArray[i].autocomplete = "off";
   }
+
   function runPlayKeyUp() {
     for (let i = 0; i < inputArray.length; i++) {
       check(keyWord[i], inputArray[i]);
       cursorMove(inputArray[i]);
-      highLightFunctions(inputArray[i]);
     }
   }
   function runPlayFocus() {
     for (let i = 0; i < inputArray.length; i++) {
       highLightFunctions(inputArray[i]);
+      test(inputArray[i]);
     }
   }
 } //end object
@@ -90,23 +90,28 @@ function blankLetter(wordSquare, inputId) {
     inputId.readOnly = "true";
   }
 }
+const wordArray = [word1, word2, word3, word4, word5];
+
+function test(section) {
+  if (section.disabled == false) {
+    section.classList.add("selected");
+  } else {
+    section.classList.remove("selected");
+  }
+}
 
 //--Work Checker
 function check(letter, id) {
   if (id.value == letter) {
-    id.classList.add("correctColor");
     id.disabled = "true";
     id.readOnly = "true";
+    id.classList.add("correctColor");
+  } else if (!id == "_") {
+    id.classList.add("selected");
   }
 }
 
-function highLightFunctions(id) {
-  if (id.focus) {
-    if (id.readOnly == false) {
-      id.classList.add("selected");
-    }
-  }
-}
+function highLightFunctions(id) {}
 
 function cursorMove(input) {
   let nextTarg = input;
@@ -119,11 +124,7 @@ function cursorMove(input) {
         nextTarg.focus();
         break;
       }
-      if (nextTarg.nextElementSibling == null) {
-        nextTarg = nextTarg.firstChild;
-        nextTarg.focus();
-        break;
-      }
+
       if (nextTarg.readOnly == true) {
         nextTarg = nextTarg.nextSibling;
         nextTarg.focus();
