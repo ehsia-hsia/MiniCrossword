@@ -10,7 +10,7 @@ const word0 = new CrossWordKey(
   "across1L5Input"
 );
 
-const word2 = new CrossWordKey(
+const word1 = new CrossWordKey(
   "hippo",
   "across2L1Input",
   "across2L2Input",
@@ -19,7 +19,7 @@ const word2 = new CrossWordKey(
   "across2L5Input"
 );
 
-const word3 = new CrossWordKey(
+const word2 = new CrossWordKey(
   "april",
   "across3L1Input",
   "across3L2Input",
@@ -28,7 +28,7 @@ const word3 = new CrossWordKey(
   "across3L5Input"
 );
 
-const word4 = new CrossWordKey(
+const word3 = new CrossWordKey(
   "space",
   "across4L1Input",
   "across4L2Input",
@@ -37,7 +37,7 @@ const word4 = new CrossWordKey(
   "across4L5Input"
 );
 
-const word5 = new CrossWordKey(
+const word4 = new CrossWordKey(
   "hahs_",
   "across5L1Input",
   "across5L2Input",
@@ -59,7 +59,7 @@ function CrossWordKey(keyWord, id1, id2, id3, id4, id5) {
   // Input Array & Call Functions
   const inputArray = [this.id1, this.id2, this.id3, this.id4, this.id5];
 
-  inputArray.forEach((input) => input.addEventListener("focus", runPlayFocus));
+  // inputArray.forEach((input) => input.addEventListener("focus", runPlayFocus));
 
   for (let i = 0; i < inputArray.length; i++) {
     blankLetter(keyWord[i], inputArray[i]);
@@ -71,25 +71,30 @@ function CrossWordKey(keyWord, id1, id2, id3, id4, id5) {
 
 const newArrayTest = []; /// sub for input array
 
-const wordArray = [word0, word2, word3, word4, word5];
+const wordArray = [word0, word1, word2, word3, word4];
 
 wordArray.forEach((word) => testyLoop(word));
-function teaty() {
-  const wordArray = [word0, word2, word3, word4, word5];
-  wordArray.forEach((word) => word.check());
+
+for (let j = 0; j < 6; j++) {
+  const idBaby = `id${j}`;
+  const word = `word${j}`;
+  console.log(word);
+  console.log(keyWord);
 }
+
 function testyLoop(word) {
   for (let i = 1; i < 6; i++) {
     const idBaby = `id${i}`; //iterate through all word objects with dynamic variable
-    console.log(idBaby);
-    word[idBaby].style.backgroundColor = "pink"; /// target all word inputs with dynamic variables
+    // console.log(idBaby);
+    // word[idBaby].style.backgroundColor = "pink"; /// target all word inputs with dynamic variables
+
     newArrayTest.push(word[idBaby]);
-    console.log(newArrayTest);
+    // console.log(newArrayTest);
     runPlayKeyUp(word[idBaby]);
   }
 }
 newArrayTest.forEach((input) => input.addEventListener("keyup", runPlayKeyUp));
-newArrayTest.forEach((input) => input.addEventListener("focus", runPlayFocus));
+// newArrayTest.forEach((input) => input.addEventListener("focus", runPlayFocus));
 
 function runPlayKeyUp(word) {
   for (let i = 0; i < newArrayTest.length; i++) {
@@ -97,11 +102,11 @@ function runPlayKeyUp(word) {
   }
 }
 
-function runPlayFocus() {
-  for (let i = 0; i < newArrayTest.length; i++) {
-    highlighter(newArrayTest[i]);
-  }
-}
+// function runPlayFocus() {
+//   for (let i = 0; i < newArrayTest.length; i++) {
+//     highlighter(newArrayTest[i]);
+//   }
+// }
 newArrayTest[1].value = "s";
 
 //--Blank Styles
