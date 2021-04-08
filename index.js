@@ -78,24 +78,21 @@ wordArray.forEach((word) => testyLoop(word));
 function testyLoop(word) {
   for (let i = 1; i < 6; i++) {
     const idBaby = `id${i}`; //iterate through all word objects with dynamic variable
-    // console.log(idBaby);
-    // word[idBaby].style.backgroundColor = "pink"; /// target all word inputs with dynamic variables
-
     newArrayTest.push(word[idBaby]);
-    // console.log(newArrayTest);
-    runPlayKeyUp(word[idBaby]);
-
-    console.log(word);
-    console.log(word.keyWord);
+    console.log(newArrayTest);
+    runPlayKeyUp(word[idBaby], word.keyWord[i - 1]);
+    check(word.keyWord[i - 1], word[idBaby]);
+    console.log(word[idBaby]);
   }
 }
 
 newArrayTest.forEach((input) => input.addEventListener("keyup", runPlayKeyUp));
 // newArrayTest.forEach((input) => input.addEventListener("focus", runPlayFocus));
 
-function runPlayKeyUp(word) {
+function runPlayKeyUp(word, letter) {
   for (let i = 0; i < newArrayTest.length; i++) {
     cursorMove(newArrayTest[i]);
+    check(letter, word);
   }
 }
 
@@ -104,7 +101,6 @@ function runPlayKeyUp(word) {
 //     highlighter(newArrayTest[i]);
 //   }
 // }
-newArrayTest[1].value = "s";
 
 //--Blank Styles
 
@@ -125,13 +121,15 @@ function highlighter(section) {
 }
 
 //--Work Checker
-function check(letter, id, singleId) {
+function check(letter, id) {
+  // id.value = letter;
+  console.log(id.value);
+  // id.classList.add("correctColor");
+
   if (id.value == letter) {
     id.disabled = "true";
     id.readOnly = "true";
     id.classList.add("correctColor");
-  } else if (id.value !== letter) {
-    singleId.classList.add("incorrectColor");
   }
 }
 
