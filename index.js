@@ -75,13 +75,6 @@ const wordArray = [word0, word1, word2, word3, word4];
 
 wordArray.forEach((word) => testyLoop(word));
 
-for (let j = 0; j < 6; j++) {
-  const idBaby = `id${j}`;
-  const word = `word${j}`;
-  console.log(word);
-  console.log(keyWord);
-}
-
 function testyLoop(word) {
   for (let i = 1; i < 6; i++) {
     const idBaby = `id${i}`; //iterate through all word objects with dynamic variable
@@ -91,8 +84,12 @@ function testyLoop(word) {
     newArrayTest.push(word[idBaby]);
     // console.log(newArrayTest);
     runPlayKeyUp(word[idBaby]);
+
+    console.log(word);
+    console.log(word.keyWord);
   }
 }
+
 newArrayTest.forEach((input) => input.addEventListener("keyup", runPlayKeyUp));
 // newArrayTest.forEach((input) => input.addEventListener("focus", runPlayFocus));
 
