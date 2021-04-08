@@ -42,3 +42,35 @@
 //     highLightFunctions(inputArray[i]);
 //   }
 // }
+
+
+function CrossWordKey(keyWord, id1, id2, id3, id4, id5) {
+  this.keyWord = keyWord; //correct word
+  this.id1 = document.getElementById(id1);
+  this.id2 = document.getElementById(id2);
+  this.id3 = document.getElementById(id3);
+  this.id4 = document.getElementById(id4);
+  this.id5 = document.getElementById(id5);
+
+  // Input Array & Call Functions
+  const inputArray = [this.id1, this.id2, this.id3, this.id4, this.id5];
+
+  // inputArray.forEach((input) => input.addEventListener("keyup", runPlayKeyUp));
+  function runPlayKeyUp(word) {
+    for (let i = 0; i < newArrayTest.length; i++) {
+      cursorMove(newArrayTest[i]);
+    }
+  }
+  inputArray.forEach((input) => input.addEventListener("focus", runPlayFocus));
+
+  for (let i = 0; i < inputArray.length; i++) {
+    blankLetter(keyWord[i], inputArray[i]);
+    inputArray[i].autocomplete = "off";
+  }
+
+  function runPlayFocus() {
+    for (let i = 0; i < inputArray.length; i++) {
+      test(inputArray[i]);
+    }
+  }
+} //end object
