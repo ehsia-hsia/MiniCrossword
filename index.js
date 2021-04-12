@@ -19,7 +19,7 @@ const word1 = new CrossWordKey(
   "across2L3Input",
   "across2L4Input",
   "across2L5Input",
-  "Cats and Cats",
+  "Butts",
   "clue2"
 );
 
@@ -30,7 +30,7 @@ const word2 = new CrossWordKey(
   "across3L3Input",
   "across3L4Input",
   "across3L5Input",
-  "Cats and Cats",
+  "Connor",
   "clue3"
 );
 
@@ -41,7 +41,7 @@ const word3 = new CrossWordKey(
   "across4L3Input",
   "across4L4Input",
   "across4L5Input",
-  "Cats and Cats",
+  "Erica",
   "clue4"
 );
 
@@ -52,7 +52,7 @@ const word4 = new CrossWordKey(
   "across5L3Input",
   "across5L4Input",
   "across5L5Input",
-  "Cats and Cats",
+  "Tuna",
   "clue5"
 );
 
@@ -91,7 +91,24 @@ function CrossWordKey(keyWord, id1, id2, id3, id4, id5, clue, clueId) {
     blankLetter(keyWord[i], inputArray[i]);
   }
 } //End Object
-word0.clueId.textContent = word0.clue;
+
+const inputIds = []; //array of all html ids
+
+const wordArray = [word0, word1, word2, word3, word4];
+
+wordArray.forEach((word) => testyLoop(word));
+
+function testyLoop(word) {
+  ///most likely function for effects for all ids
+  for (let i = 1; i < 6; i++) {
+    const idBaby = `${i}`; //name object id with dynmic variable
+    inputIds.push(word[idBaby]); //pushes all ids of all words
+    // runPlayOnKeyUp(word[idBaby]);
+    console.log(word.clueId);
+    word.clueId.textContent = word.clue;
+  }
+}
+
 //--Work Checker
 function check(letter, id) {
   if (id.value == letter) {
@@ -100,9 +117,6 @@ function check(letter, id) {
     id.classList.add("correctColor");
     id.classList.remove("incorrectColor");
   }
-  // } else {
-  //   id.classList.add("incorrectColor");
-  // }
 }
 
 //--Higlighter
