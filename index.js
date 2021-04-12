@@ -1,6 +1,7 @@
 "use strict";
 
 //Variable and Object Creation
+
 const word0 = new CrossWordKey(
   "_poem",
   "across1L1Input",
@@ -46,7 +47,7 @@ const word4 = new CrossWordKey(
   "across5L5Input"
 );
 
-//Construction Function
+/*Constructor Function */
 
 function CrossWordKey(keyWord, id1, id2, id3, id4, id5) {
   this.keyWord = keyWord; //correct word
@@ -56,62 +57,61 @@ function CrossWordKey(keyWord, id1, id2, id3, id4, id5) {
   this.id4 = document.getElementById(id4);
   this.id5 = document.getElementById(id5);
 
-  // Input Array & Call Functions
   const inputArray = [this.id1, this.id2, this.id3, this.id4, this.id5];
-
-  // inputArray.forEach((input) => input.addEventListener("focus", runPlayFocus));
-
+  /*Blank Letter Space Creator && Letter Checker*/
   for (let i = 0; i < inputArray.length; i++) {
-    blankLetter(keyWord[i], inputArray[i]);
+    //Auto Check Off
     inputArray[i].autocomplete = "off";
+    //Run Check Function
+    inputArray.forEach((item) =>
+      item.addEventListener("focus", function () {
+        check(keyWord[i], inputArray[i]);
+      })
+    );
+    //Run Higlighter
+    inputArray.forEach((item) =>
+      item.addEventListener("click", function () {
+        highlighter(inputArray[i]);
+      })
+    );
+    //Run Blank Function
+    blankLetter(keyWord[i], inputArray[i]);
   }
-} //end object
+} //End Object
 
-/*---------------NEED TO DO WORD CHECK FUNCTION!___*/
-
-const newArrayTest = []; /// sub for input array
+const inputIds = []; //array of all html ids
 
 const wordArray = [word0, word1, word2, word3, word4];
 
 wordArray.forEach((word) => testyLoop(word));
 
 function testyLoop(word) {
+  ///most likely function for effects for all ids
   for (let i = 1; i < 6; i++) {
-    const idBaby = `id${i}`; //iterate through all word objects with dynamic variable
-    newArrayTest.push(word[idBaby]);
-    console.log(newArrayTest);
-    runPlayKeyUp(word[idBaby], word.keyWord[i - 1]);
-    check(word.keyWord[i - 1], word[idBaby]);
-    console.log(word[idBaby]);
+    const idBaby = `id${i}`; //name object id with dynmic variable
+    inputIds.push(word[idBaby]); //pushes all ids of all words
+    runPlayOnKeyUp(word[idBaby]);
   }
 }
 
-newArrayTest.forEach((input) => input.addEventListener("keyup", runPlayKeyUp));
-// newArrayTest.forEach((input) => input.addEventListener("focus", runPlayFocus));
+inputIds.forEach((input) => input.addEventListener("keyup", runPlayOnKeyUp));
 
-function runPlayKeyUp(word, letter) {
-  for (let i = 0; i < newArrayTest.length; i++) {
-    cursorMove(newArrayTest[i]);
-    check(letter, word);
+function runPlayOnKeyUp(word) {
+  for (let i = 0; i < inputIds.length; i++) {
+    cursorMove(inputIds[i]);
   }
 }
 
-// function runPlayFocus() {
-//   for (let i = 0; i < newArrayTest.length; i++) {
-//     highlighter(newArrayTest[i]);
-//   }
-// }
-
-//--Blank Styles
-
-function blankLetter(wordSquare, inputId) {
-  if (wordSquare == "_") {
-    inputId.classList.add("blankLetter");
-    inputId.disabled = "true";
-    inputId.readOnly = "true";
+//--Work Checker
+function check(letter, id) {
+  if (id.value == letter) {
+    id.disabled = "true";
+    id.readOnly = "true";
+    id.classList.add("correctColor");
   }
 }
 
+//--Higlighter
 function highlighter(section) {
   if (section.disabled == false) {
     section.classList.add("selected");
@@ -120,19 +120,16 @@ function highlighter(section) {
   }
 }
 
-//--Work Checker
-function check(letter, id) {
-  // id.value = letter;
-  console.log(id.value);
-  // id.classList.add("correctColor");
-
-  if (id.value == letter) {
-    id.disabled = "true";
-    id.readOnly = "true";
-    id.classList.add("correctColor");
+//--Blank Styles
+function blankLetter(wordSquare, inputId) {
+  if (wordSquare == "_") {
+    inputId.classList.add("blankLetter");
+    inputId.disabled = "true";
+    inputId.readOnly = "true";
   }
 }
 
+//--Cursor Behavior
 function cursorMove(input) {
   let nextTarg = input;
   let myLength = nextTarg.value.length;
