@@ -1,14 +1,15 @@
 "use strict";
 
 //Variable and Object Creation
-
 const word0 = new CrossWordKey(
   "_poem",
   "across1L1Input",
   "across1L2Input",
   "across1L3Input",
   "across1L4Input",
-  "across1L5Input"
+  "across1L5Input",
+  "Cats and Cats",
+  "clue1"
 );
 
 const word1 = new CrossWordKey(
@@ -17,7 +18,9 @@ const word1 = new CrossWordKey(
   "across2L2Input",
   "across2L3Input",
   "across2L4Input",
-  "across2L5Input"
+  "across2L5Input",
+  "Cats and Cats",
+  "clue2"
 );
 
 const word2 = new CrossWordKey(
@@ -26,7 +29,9 @@ const word2 = new CrossWordKey(
   "across3L2Input",
   "across3L3Input",
   "across3L4Input",
-  "across3L5Input"
+  "across3L5Input",
+  "Cats and Cats",
+  "clue3"
 );
 
 const word3 = new CrossWordKey(
@@ -35,7 +40,9 @@ const word3 = new CrossWordKey(
   "across4L2Input",
   "across4L3Input",
   "across4L4Input",
-  "across4L5Input"
+  "across4L5Input",
+  "Cats and Cats",
+  "clue4"
 );
 
 const word4 = new CrossWordKey(
@@ -44,23 +51,27 @@ const word4 = new CrossWordKey(
   "across5L2Input",
   "across5L3Input",
   "across5L4Input",
-  "across5L5Input"
+  "across5L5Input",
+  "Cats and Cats",
+  "clue5"
 );
 
 /*Constructor Function */
 
-function CrossWordKey(keyWord, id1, id2, id3, id4, id5) {
+function CrossWordKey(keyWord, id1, id2, id3, id4, id5, clue, clueId) {
   this.keyWord = keyWord; //correct word
   this.id1 = document.getElementById(id1);
   this.id2 = document.getElementById(id2);
   this.id3 = document.getElementById(id3);
   this.id4 = document.getElementById(id4);
   this.id5 = document.getElementById(id5);
+  this.clue = clue;
+  this.clueId = document.getElementById(clueId);
 
   const inputArray = [this.id1, this.id2, this.id3, this.id4, this.id5];
+
   /*Blank Letter Space Creator && Letter Checker*/
   for (let i = 0; i < inputArray.length; i++) {
-    console.log(this.keyWord[i], inputArray[i]);
     //Auto Check Off
     inputArray[i].autocomplete = "off";
     // Run Higlighter
@@ -70,7 +81,6 @@ function CrossWordKey(keyWord, id1, id2, id3, id4, id5) {
       })
     );
     //Run Check Function and Cursor Behavior
-
     inputArray.forEach((item) =>
       item.addEventListener("keyup", function () {
         cursorMove(inputArray[i]);
@@ -81,16 +91,18 @@ function CrossWordKey(keyWord, id1, id2, id3, id4, id5) {
     blankLetter(keyWord[i], inputArray[i]);
   }
 } //End Object
-
+word0.clueId.textContent = word0.clue;
 //--Work Checker
 function check(letter, id) {
   if (id.value == letter) {
     id.disabled = "true";
     id.readOnly = "true";
     id.classList.add("correctColor");
-  } else {
-    id.classList.add("incorrectColor");
+    id.classList.remove("incorrectColor");
   }
+  // } else {
+  //   id.classList.add("incorrectColor");
+  // }
 }
 
 //--Higlighter
@@ -101,6 +113,7 @@ function highlighter(section) {
     section.classList.remove("selected");
   }
 }
+
 //--Blank Styles
 function blankLetter(wordSquare, inputId) {
   if (wordSquare == "_") {
