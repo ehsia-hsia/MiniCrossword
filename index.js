@@ -8,7 +8,7 @@ const word0 = new CrossWordKey(
   "across1L3Input",
   "across1L4Input",
   "across1L5Input",
-  "Cats and Cats",
+  "1. Cats and Cats",
   "clue1"
 );
 
@@ -19,7 +19,7 @@ const word1 = new CrossWordKey(
   "across2L3Input",
   "across2L4Input",
   "across2L5Input",
-  "Butts",
+  "2. Butts",
   "clue2"
 );
 
@@ -30,7 +30,7 @@ const word2 = new CrossWordKey(
   "across3L3Input",
   "across3L4Input",
   "across3L5Input",
-  "Connor",
+  " 3. Connor",
   "clue3"
 );
 
@@ -41,7 +41,7 @@ const word3 = new CrossWordKey(
   "across4L3Input",
   "across4L4Input",
   "across4L5Input",
-  "Erica",
+  "4. Erica",
   "clue4"
 );
 
@@ -52,7 +52,7 @@ const word4 = new CrossWordKey(
   "across5L3Input",
   "across5L4Input",
   "across5L5Input",
-  "Tuna",
+  "5. Tuna",
   "clue5"
 );
 
@@ -92,6 +92,7 @@ function CrossWordKey(keyWord, id1, id2, id3, id4, id5, clue, clueId) {
   }
 } //End Object
 
+//Dynamic clue entry for practice
 const inputIds = []; //array of all html ids
 
 const wordArray = [word0, word1, word2, word3, word4];
@@ -101,9 +102,8 @@ wordArray.forEach((word) => testyLoop(word));
 function testyLoop(word) {
   ///most likely function for effects for all ids
   for (let i = 1; i < 6; i++) {
-    const idBaby = `${i}`; //name object id with dynmic variable
+    const idBaby = `${i}`; //dynamic name of each word object
     inputIds.push(word[idBaby]); //pushes all ids of all words
-    // runPlayOnKeyUp(word[idBaby]);
     console.log(word.clueId);
     word.clueId.textContent = word.clue;
   }

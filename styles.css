@@ -15,15 +15,16 @@
   grid-column: 1;
   height: 100%;
   width: 100%;
-  background-color: #557174;
   margin: auto;
-  box-sizing: content-box;
-  -webkit-box-sizing: content-box;
-  -moz-box-sizing: content-box;
+  border: solid 8px pink;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
 }
 
-ul li {
+ol li {
   font-size: 20px;
+  text-align: left;
 }
 /*Grid Structure */
 .crosswordGrid {
@@ -106,6 +107,14 @@ input:focus {
   .sidebar {
     grid-column: 1;
     grid-row: 2;
+  }
+  ol {
+    padding-left: 0;
+    text-align: center;
+  }
+  ol li {
+    display: inline;
+    list-style-type: circle !important;
   }
   .crosswordGrid {
     grid-column: 1;
