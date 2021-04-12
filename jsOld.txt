@@ -74,3 +74,28 @@ function CrossWordKey(keyWord, id1, id2, id3, id4, id5) {
     }
   }
 } //end object
+
+
+
+const inputIds = []; //array of all html ids
+
+const wordArray = [word0, word1, word2, word3, word4];
+
+wordArray.forEach((word) => testyLoop(word));
+
+function testyLoop(word) {
+  ///most likely function for effects for all ids
+  for (let i = 1; i < 6; i++) {
+    const idBaby = `id${i}`; //name object id with dynmic variable
+    inputIds.push(word[idBaby]); //pushes all ids of all words
+    runPlayOnKeyUp(word[idBaby]);
+  }
+}
+
+inputIds.forEach((input) => input.addEventListener("keyup", runPlayOnKeyUp));
+
+function runPlayOnKeyUp(word) {
+  for (let i = 0; i < inputIds.length; i++) {
+    cursorMove(inputIds[i]);
+  }
+}

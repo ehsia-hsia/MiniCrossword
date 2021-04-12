@@ -60,18 +60,21 @@ function CrossWordKey(keyWord, id1, id2, id3, id4, id5) {
   const inputArray = [this.id1, this.id2, this.id3, this.id4, this.id5];
   /*Blank Letter Space Creator && Letter Checker*/
   for (let i = 0; i < inputArray.length; i++) {
+    console.log(this.keyWord[i], inputArray[i]);
     //Auto Check Off
     inputArray[i].autocomplete = "off";
-    //Run Check Function
-    inputArray.forEach((item) =>
-      item.addEventListener("focus", function () {
-        check(keyWord[i], inputArray[i]);
-      })
-    );
-    //Run Higlighter
+    // Run Higlighter
     inputArray.forEach((item) =>
       item.addEventListener("click", function () {
         highlighter(inputArray[i]);
+      })
+    );
+    //Run Check Function and Cursor Behavior
+
+    inputArray.forEach((item) =>
+      item.addEventListener("keyup", function () {
+        cursorMove(inputArray[i]);
+        check(keyWord[i], inputArray[i]);
       })
     );
     //Run Blank Function
@@ -79,47 +82,25 @@ function CrossWordKey(keyWord, id1, id2, id3, id4, id5) {
   }
 } //End Object
 
-const inputIds = []; //array of all html ids
-
-const wordArray = [word0, word1, word2, word3, word4];
-
-wordArray.forEach((word) => testyLoop(word));
-
-function testyLoop(word) {
-  ///most likely function for effects for all ids
-  for (let i = 1; i < 6; i++) {
-    const idBaby = `id${i}`; //name object id with dynmic variable
-    inputIds.push(word[idBaby]); //pushes all ids of all words
-    runPlayOnKeyUp(word[idBaby]);
-  }
-}
-
-inputIds.forEach((input) => input.addEventListener("keyup", runPlayOnKeyUp));
-
-function runPlayOnKeyUp(word) {
-  for (let i = 0; i < inputIds.length; i++) {
-    cursorMove(inputIds[i]);
-  }
-}
-
 //--Work Checker
 function check(letter, id) {
   if (id.value == letter) {
     id.disabled = "true";
     id.readOnly = "true";
     id.classList.add("correctColor");
+  } else {
+    id.classList.add("incorrectColor");
   }
 }
 
 //--Higlighter
 function highlighter(section) {
   if (section.disabled == false) {
-    section.classList.add("selected");
+    section.classList.toggle("selected");
   } else {
     section.classList.remove("selected");
   }
 }
-
 //--Blank Styles
 function blankLetter(wordSquare, inputId) {
   if (wordSquare == "_") {
