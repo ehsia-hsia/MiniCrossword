@@ -25,6 +25,7 @@
 ol li {
   font-size: 20px;
   text-align: left;
+  list-style-type: none;
 }
 /*Grid Structure */
 .crosswordGrid {
@@ -79,7 +80,7 @@ input:focus {
 /* Play Styles */
 .correctColor {
   color: blue;
-  background-color: lightblue !important;
+  background-color: #a7d8ff !important;
 }
 .incorrectColor {
   color: red;
