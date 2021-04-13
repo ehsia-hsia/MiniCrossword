@@ -1,36 +1,57 @@
+body {
+  font-family: Helvetica, sans-serif;
+}
+
 .pageLayout {
   display: grid;
-  grid-template-columns: 1fr, 4fr;
-  grid-template-rows: 100%, 4fr;
+  grid-gap: 3rem;
 }
 
 .title {
   width: 100%;
+  padding: 2%;
   grid-column: span 2;
   text-align: center;
+  font-size: 6vw;
+}
+.buttonArea {
+  grid-row: 2;
+  grid-column: span 2;
+  height: 100%;
+  width: 90%;
+  margin: auto;
+  border: solid 3px black;
 }
 
+input #autoCheck {
+  height: 50px;
+}
 .sidebar {
-  grid-row: 2;
+  grid-row: 3;
   grid-column: 1;
   height: 100%;
-  width: 100%;
+  width: 80%;
   margin: auto;
-  border: solid 8px pink;
+  border: solid 8px black;
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
 }
 
+ol {
+  padding-left: 0;
+}
 ol li {
+  padding: 5%;
   font-size: 20px;
   text-align: left;
+  line-height: 30px;
   list-style-type: none;
 }
 /*Grid Structure */
 .crosswordGrid {
   grid-column: 2;
-  grid-row: 2;
+  grid-row: 3;
   margin: auto;
   width: 500px;
   height: 524px;
@@ -41,16 +62,16 @@ ol li {
   grid-gap: 0;
 }
 
-* {
+.crosswordGrid input {
   height: 100px;
   text-align: center;
   text-transform: uppercase;
   font-size: 2rem;
   color: black;
-}
-
-input {
   caret-color: transparent;
+}
+input[type="text"] {
+  font-size: 4rem;
 }
 
 input:focus {
