@@ -147,22 +147,42 @@ function blankLetter(wordSquare, inputId) {
 }
 
 //--Cursor Behavior
-function cursorMove(input) {
-  let nextTarg = input;
-  let myLength = nextTarg.value.length;
-  if (myLength >= 1) {
-    nextTarg.focus();
-    while ((nextTarg = nextTarg.nextElementSibling)) {
-      if (nextTarg == null) break;
-      if (nextTarg.tagName.toLowerCase() == "input") {
-        nextTarg.focus();
-        break;
-      }
+// function cursorMove(input) {
+//   let nextTarg = input;
+//   let myLength = nextTarg.value.length;
+//   if (myLength >= 1) {
+//     nextTarg.focus();
+//     while ((nextTarg = nextTarg.nextElementSibling)) {
+//       if (nextTarg == null) break;
+//       if (nextTarg.tagName.toLowerCase() == "input") {
+//         nextTarg.focus();
+//         break;
+//       }
 
-      if (nextTarg.readOnly == true) {
-        nextTarg = nextTarg.nextSibling;
-        nextTarg.focus();
-        break;
+//       if (nextTarg.readOnly == true) {
+//         nextTarg = nextTarg.nextSibling;
+//         nextTarg.focus();
+//         break;
+//       }
+//     }
+//   }
+// }
+let input = document.getElementsByTagName("input");
+
+// input[i].addEventListener("keyup", cursorMove);
+function cursorMove(e) {
+
+
+    if (e.key == "Backspace") {
+      while ((nextTarg = nextTarg.previousElementSibling)) {
+        if (nextTarg == null) break;
+        if (nextTarg.tagName.toLowerCase() == "input") {
+          nextTarg.focus();
+          break;
+        }
+        if (nextTarg.previousElementSibling == null) {
+          break;
+        }
       }
     }
   }
